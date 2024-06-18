@@ -196,11 +196,11 @@ if __name__ == '__main__':
     2. You should start the processes to work and terminate resources properly
     '''
     # BEGIN SOLUTION
-    world_size = 8  # TODO: Define the number of GPUs
+    world_size = args.world_size  # TODO: Define the number of GPUs
     backend = 'nccl'  # TODO: Define your backend for communication, we suggest using 'nccl'
     
     for i in range(world_size):
-        processes.append(Process(target=run_dp, args=(i, world_size, backend,)))
+        processes.append(Process(target=run_dp, args=(i, world_size, backend, args.dataset, args.model_max_length, args.n_epochs, args.batch_size, args.learning_rate)))
     
     for i in range(world_size):
         processes[i].start()
