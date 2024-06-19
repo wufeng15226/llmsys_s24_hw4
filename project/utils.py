@@ -141,7 +141,8 @@ def train(model, optimizer, examples, batch_size, collate_fn, desc, rank=0, aver
             Just few lines of code. Think simply.
         '''
         # BEGIN SOLUTION
-        average_gradients_fn(model)
+        # can only be used in dp
+        # average_gradients_fn(model)
         # END SOLUTION
         optimizer.step()
         batch_time = time.time() - t0
